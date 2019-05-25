@@ -15,6 +15,6 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
 
 include_directories("${CMAKE_SOURCE_DIR}")
 
-add_executable(binwrit
+add_executable(binwritcat
   main.cpp
 )

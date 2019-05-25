@@ -1,7 +1,9 @@
-#include <iostream>
-#include <cstring>
 #include <unistd.h>
+#include <cctype>
+#include <cstdint>
+#include <cstring>
 #include <cassert>
+#include <cstdio>
 
 struct Fajne {
   using intt = intptr_t;
@@ -67,9 +69,7 @@ struct Fajne {
 
   bool wysylac() {return slij;}
   void wyslij() {
-    std::cout.put(char_to_print);
-    std::cout.flush();
-    if (!std::cout.good()) {
+    if (write(STDOUT_FILENO, &char_to_print, 1) != 1) {
       // Chyba nie można już pisać xd
       end = true;
     }
@@ -83,8 +83,7 @@ void Fajne::daj_znak() {
     switch (meow) {
       case Meow::NORMALNIE:
         assert(gdzie == 0);
-        std::cin.get(xx());
-        if (!std::cin.good()) {
+        if (read(STDIN_FILENO, &xx(), 1) != 1) {
           end = true;
           return;
         }
@@ -102,8 +101,7 @@ void Fajne::daj_znak() {
       case Meow::BACKSLASH:
         assert(gdzie == 1);
         assert(x(0) == '\\');
-        std::cin.get(xx());
-        if (!std::cin.good()) {
+        if (read(STDIN_FILENO, &xx(), 1) != 1) {
           set_char('\\');
           end = true;
           return;
@@ -147,8 +145,7 @@ void Fajne::daj_znak() {
         assert(gdzie >= 2);
         assert(x(0) == '\\');
         assert(x(1) == 'x');
-        std::cin.get(xx());
-        if (!std::cin.good()) {
+        if (read(STDIN_FILENO, &xx(), 1) != 1) {
           if (gdzie == 2) {
             // No ok, wyślijmy nic.
             r();
@@ -187,8 +184,8 @@ void Fajne::daj_znak() {
         assert(gdzie >= 2);
         assert(x(0) == '\\');
         assert(x(1) == '0');
-        std::cin.get(xx());
-        if (!std::cin.good()) {
+        if (read(STDIN_FILENO, &xx(), 1) != 1) {
+          // no, chyba koniec
           if (gdzie == 2) {
             // No ok, wyślijmy nic.
             r();

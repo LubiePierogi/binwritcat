@@ -68,6 +68,7 @@ struct Fajne {
   bool wysylac() {return slij;}
   void wyslij() {
     std::cout.put(char_to_print);
+    std::cout.flush();
     if (!std::cout.good()) {
       // Chyba nie można już pisać xd
       end = true;

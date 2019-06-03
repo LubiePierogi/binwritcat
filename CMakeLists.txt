@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(binwrit CXX)
+project(literkipisanie CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,6 +15,6 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
 
 include_directories("${CMAKE_SOURCE_DIR}")
 
-add_executable(binwritcat
+add_executable(literkipisanie
   main.cpp
 )
